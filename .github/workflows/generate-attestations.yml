@@ -9,7 +9,7 @@ on:
       - main
   
 env:
-    IMAGE_NAME: $(( github.repository ))
+    IMAGE_NAME: ${{ github.repository }}
 jobs:
   build-docker-image:
     runs-on: ubuntu-latest
