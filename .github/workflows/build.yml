@@ -27,6 +27,7 @@ jobs:
           path: /tmp/myimage.tar
         
   dev-deploy:
+    needs: build-upload
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -37,6 +38,7 @@ jobs:
 
   
   qa-deploy:
+    needs: dev-deploy
     runs-on: ubuntu-latest
     environment: qa
     steps:
