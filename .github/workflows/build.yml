@@ -1,0 +1,40 @@
+name: docker build
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+    
+      - name: build
+        run: docker build . -t image1
+    
+      - uses: actions/upload-artifact@v4
+        with:
+          name: image1
+          path: image1
+        
+  dev-deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: download
+        uses: actions/download-artifact@v2
+        with:
+          name: image1
+
+  
+  qa-deploy:
+    runs-on: ubuntu-latest
+    environment: qa
+    steps:
+      - name: download
+        uses: actions/download-artifact@v2
+        with:
+          name: image1
+      
