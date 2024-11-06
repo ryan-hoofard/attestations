@@ -11,13 +11,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
     
-      - name: build
-        run: docker build . -t image1
-    
-      - uses: actions/upload-artifact@v4
+      - name: Build and export
+        uses: docker/build-push-action@v6
         with:
-          name: image1
-          path: image1
+          tags: myimage:latest
+          outputs: type=docker,dest=/tmp/myimage.tar
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: myimage
+          path: /tmp/myimage.tar
         
   dev-deploy:
     runs-on: ubuntu-latest
@@ -26,7 +30,7 @@ jobs:
       - name: download
         uses: actions/download-artifact@v2
         with:
-          name: image1
+          name: myimage
 
   
   qa-deploy:
@@ -36,5 +40,5 @@ jobs:
       - name: download
         uses: actions/download-artifact@v2
         with:
-          name: image1
+          name: myimage
       
