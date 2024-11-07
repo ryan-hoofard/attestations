@@ -1,11 +1,11 @@
-name: docker build
+name: sandbox build
 on:
   push:
     branches:
       - '!main'
       
 concurrency:  
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: sandbox
   cancel-in-progress: true
   
 jobs:

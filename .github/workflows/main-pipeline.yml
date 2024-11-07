@@ -1,11 +1,11 @@
-name: docker build
+name: dev-qa-prod
 on:
   pull_request:
     branches:
       - main
       
 concurrency:  
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: dev-qa-prod
   cancel-in-progress: true
   
 jobs:
