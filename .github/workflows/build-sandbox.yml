@@ -1,8 +1,6 @@
 name: sandbox build
 on:
-  push:
-    branches-ignore:
-      - main
+  workflow_dispatch:
       
 concurrency:  
   group: sandbox
