@@ -1,8 +1,8 @@
 name: sandbox build
 on:
   push:
-    branches:
-      - '!main'
+    branches-ignore:
+      - main
       
 concurrency:  
   group: sandbox
