@@ -50,4 +50,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: myimage
+
+  prod-deploy:
+    needs: qa-deploy
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: download
+        uses: actions/download-artifact@v4
+        with:
+          name: myimage
       
